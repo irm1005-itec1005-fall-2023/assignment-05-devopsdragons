@@ -4,6 +4,25 @@ let firstCard, secondCard;
 let lockBoard = false;
 let score = 0;
 
+//
+function formatTime(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${hours}:${minutes}:${remainingSeconds}`;
+}
+
+// Function to update the timer every second
+function updateTimer() {
+  timerSeconds++;
+  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+}
+
+let timerSeconds = 0;
+const timerInterval = setInterval(updateTimer, 1000);
+//
+
 document.querySelector(".score").textContent = score;
 
 fetch("./data/cards.json")
@@ -34,7 +53,7 @@ function generateCards() {
     cardElement.setAttribute("data-name", card.name);
     cardElement.innerHTML = `
       <div class="front">
-        <img class="front-image" src=${card.image} />
+        <img class="front-image" src=${card.image}>
       </div>
       <div class="back"></div>
     `;
@@ -90,10 +109,15 @@ function resetBoard() {
 }
 
 function restart() {
+  timerSeconds = 0;
+  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+
   resetBoard();
   shuffleCards();
   score = 0;
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
+  time();
 }
+
