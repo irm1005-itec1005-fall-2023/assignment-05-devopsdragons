@@ -25,19 +25,95 @@
 /*
   PAGE / BODY
 */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
-  background-color: var(--body-background-colour);
+@font-face {
+  font-family: xp; src: url(./fonts/TAHOMA.TTF);
 }
 
-main {
-  min-height: 100vh;
+body {
+  font-family: xp;
 
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #1d3557;
+  color: white;
+}
+
+h1{
+  text-align: center;
+  font-weight: 700;
+  font-size: 50px;
+}
+
+p{
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.actions{
+  /* might want to change to grid in future */
+  display: flex;
+  justify-content: center;
+}
+
+.actions button{
+  padding: 8px 16px;
+  font-size: 30px;
+  border-radius: 5px;
+}
+
+.grid-container{
+  display: grid;
+  justify-content: center;
+  grid-gap: 16px;
+  grid-template-columns: repeat(6, 140px);
+  grid-template-rows: repeat(2, calc(140px / 2 * 3));
+}
+
+.card{
+  height: calc(140px / 2 * 3);
+  width: 140px;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+}
+
+.front-image{
+  width: 60px;
+  height: 60px;
+}
+
+.card.flipped{
+  transform: rotateY(180deg);
+}
+
+.front,.back{
+  backface-visibility: hidden;
+  position: absolute;
+  border-radius: 8px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card .front{
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotateY(180deg);
 }
+
+.card .back{
+  background-image: url(./images/backplaceholder.jpg);
+  background-position: center center;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+
 
 /*
   Screen reader text utility class
