@@ -118,6 +118,12 @@ function restart() {
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
-  
+  timer();
 }
 
+// function completedCheck(){
+//   const cards_to_check = document.getElementById("grid-container")
+//   console.log(cards_to_check.length);
+// }
+
+// completedCheck()

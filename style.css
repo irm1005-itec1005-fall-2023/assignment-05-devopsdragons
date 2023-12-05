@@ -34,14 +34,21 @@ body {
 
   min-height: 100vh;
   min-width: 100vw;
-  background-color: #1d3557;
+  background: url("images/Windows style images/windows_background.jpg");
   color: white;
+
+  backdrop-filter: blur(2px);
 }
 
 h1{
+  font-family: Tahoma;
   text-align: center;
   font-weight: 700;
   font-size: 50px;
+
+  text-decoration: wavy;
+  text-shadow: 0.1rem 0.1rem  #1d3557;
+  color: #f4f8f8;
 }
 
 p{
@@ -62,19 +69,157 @@ p{
   border-radius: 5px;
 }
 
-.grid-container{
+
+/* The windows xp style window ///////////////////////////////////////////////*/
+.window-content {
+  background-color: #d9d9d9;
+  border: 1px solid black;
+  border-radius:5px 5px 0 0;
+
+  margin: 2rem 15rem; /* if add levels, use reposonsive */
+  margin-bottom: 10rem;
+
+  border-color: #0072ef #01279e #01279e #0236d8;
+
   display: grid;
-  justify-content: center;
-  grid-gap: 16px;
-  grid-template-columns: repeat(6, 140px);
-  grid-template-rows: repeat(2, calc(140px / 2 * 3));
+  grid-template: 1fr 1fr 1fr;
+
+  background:
+    linear-gradient(to right, #034fe1, #1682f2 1px, #006ee4 2px, rgba(0,0,0,0) 3px),
+    linear-gradient(to left, #0034b0, #0056e1 1px, #0064f4 2px, rgba(0,0,0,0) 3px),
+    linear-gradient(to top, #0034b1, #0056e1 1px, #0064f4 2px, rgba(184, 28, 28, 0) 3px)
+    ;
+    background-color: #dcdcdc;
+
+  *{
+    cursor: default;
+  }
 }
 
+h2{
+  background: #006fea;
+  line-height: 32px;
+  height:30px;
+  position:relative;
+  margin:0;
+  padding:0;
+  border-radius:3px 3px 0 0;
+  background-image:
+    linear-gradient(to right, #0050db, rgba(255,255,255,.1) 4px, rgba(255,255,255,0) 200px),
+    linear-gradient(to left, #0034b0, #0056e1 1px, #0064f4 2px, rgba(0,0,0,0) 3px),
+    linear-gradient(to bottom, #4aa9ff, #33a4ff 1px, #008aff 2px, #007ef4 3px, #0075f0 4px, rgba(0,0,0,0) 5px),
+    linear-gradient(to top, #005dd9, #0067e9 1px, #007afb 2px, #0081fb 3px, rgba(0,0,0,0) 4px);
+  font-family: sans-serif;
+  color:white;
+  font-weight: normal;
+  font-size:14px;
+  padding-left:8px;
+  text-shadow: 1px 1px 0 #0a2a95;
+
+  grid-row-start: 1;
+  /* grid-row-end: 4; */
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.close{
+  position:absolute;
+  right: 6px;
+  top: 6px;
+  height: 19px;
+  padding-left:19px;
+  width:0;
+  overflow:hidden;
+  border:1px solid white;
+  border-radius: 3px;
+  background:
+    radial-gradient(circle at 20px 20px, #e84f00, rgba(255,255,255,0)),
+    radial-gradient(circle at -5px -5px, white, rgba(255,255,255,.3), rgba(255,255,255,0)),
+    linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0)),
+    linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0))
+    ;
+  background-color: #e81000;
+  &:after{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    border:1px solid rgba(33,0,0,0.2);
+    border-radius: 2px;
+  }
+  &:before{
+    content:"×";
+    position:absolute;
+    left:2.5px;
+    top:-7px;
+    color: white;
+    text-shadow:none;
+    font-size:23px;
+  }
+}
+
+/* ///////////////////////////////////////////////////////////////////////////*/
+
+.grid-container{
+  flex:1;
+  margin: 1rem 0rem 0.5rem 2rem;
+  padding: 1rem;
+  /* border: 1px solid rgb(166, 212, 252);
+  background-color: rgb(239, 153, 248); */
+
+  grid-row-start: 2;
+  width: 50rem;
+
+  display: grid;
+  justify-content: center;
+  row-gap: 1rem;
+  column-gap: 2.7rem;
+  grid-template-columns: repeat(6, 6rem);
+  /* grid-template-rows: repeat(2, calc(140px / 2 * 3)); */
+}
+
+/* Styling the bars ////////////////////////////////////////////////////// */
+
+/* fix: changed the cards smaller
+        decrese the gap between cards
+        more space for buttons on bottom
+        */
+
+.bottom-bar {
+  background-color: rgb(199, 199, 199);
+  box-shadow: inset -0.2em 0.2em 0.2em -0.1em  rgba(255, 255, 255, 1), inset 0.2em 0.2em 0.2em -0.1em rgba(0,0,0,0.4);
+  /* margin: 2rem 2rem 2rem 2rem; */
+  margin: 0rem 1rem 2rem 2rem;
+  padding: 1rem;
+
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.right-bar {
+  background-color: rgb(199, 199, 199);
+  box-shadow: inset -0.2em 0.2em 0.2em -0.1em  rgba(255, 255, 255, 1), inset 0.2em 0.2em 0.2em -0.1em rgba(0,0,0,0.4);
+
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 4;
+
+  margin: 2rem 2rem 2rem 0rem;
+}
+
+/* Styling the flipping card ////////////////////////////////////////////////////// */
 .card{
-  height: calc(140px / 2 * 3);
-  width: 140px;
-  border-radius: 8px;
+  /* height: calc(140px / 2 * 3); */
+  height: 6rem;
+  width: 6rem;
+  grid-gap: 0.2rem;
+
+  border-radius: 15px;
   background-color: white;
+
   position: relative;
   transform-style: preserve-3d;
   transition: all 0.5s ease-in-out;
@@ -107,10 +252,35 @@ p{
 }
 
 .card .back{
-  background-image: url(./images/backplaceholder.jpg);
+  background-image: url("images/Windows style images/card back.png");
   background-position: center center;
   background-size: cover;
   backface-visibility: hidden;
+}
+
+.actions {
+  display: flex;
+  flex-grow: initial;
+  justify-content: space-around;
+
+}
+
+.btn-primary {
+  display: flex;
+  text-shadow: 0 0 2px rgba(0,0,0,.3);
+  font-family: Tahoma;
+  border-color: rgb(145, 144, 144);
+
+  background-color: rgb(199, 199, 199);
+  box-shadow: 
+  inset 0.2em 0.2em 0.3em -0.1em  rgba(255, 255, 255, 1), 
+  inset 0.2em 0.2em 0.3em -0.1em rgba(0,0,0,0.4),
+  inset 0.2em 0.2em 0.2em -10em rgba(0,0,0,5),
+  inset -0.2em -0.2em 0.2em -1em rgba(0,0,0,5);
+}
+
+.btn-primary img{
+  width: 3rem;
 }
 
 

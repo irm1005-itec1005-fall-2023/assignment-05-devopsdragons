@@ -15,17 +15,39 @@
     <link rel="icon" href="./images/favicon/ijustneedtofindthistab.jpg" type="image/svg+xml" />
   </head>
   <body>
-    <h1>TITLE PLACEHOLDER</h1>
-    <div class="grid-container"></div>
+    <h1>Flipping Windows</h1>
+    <div class="window-content">
+      <h2>
+        <div class="text">
+          <span>Welcome to Windows</span>
+        </div> 
+        <a href="#" class="close">Close</a>
+      </h2>
+      <div class="grid-container"></div>
+    
 
-    <!-- for future styling this will probably need to be in another container -->
-    <p>Flips: <span class="score"></span></p> <!-- Move where needed -->
-    <p>Time: <span  class ="timer"></span></p>
-    <!-- as will this to achieve our desired look -->
-    <div class="actions">
-      <button onclick="restart()">Restart</button>
-      <button onclick="menu()">Menu</button>
+      <section class="right-bar">
+        <p>Flips: <span class="score"></span></p> <!-- Move where needed -->
+        <p>Time: <span  class ="timer"></span></p>
+      </section>
+
+      <section class="bottom-bar">
+        <div class="actions">
+
+          <button class="btn-primary">
+            <img src="images/Windows style images/windows_start.png">
+            Start
+          </button> 
+
+          <button onclick="restart()"class="btn-primary">Restart</button> 
+          <!-- onclicks are evil -->
+          <button onclick="menu()" class="btn-primary">Menu</button>
+        </div>
+      </section>
     </div>
+
+    <!-- as will this to achieve our desired look -->
+    
     <script src="./script.js"></script>
   </body>
 </html>
