@@ -118,6 +118,6 @@ function restart() {
   document.querySelector(".score").textContent = score;
   gridContainer.innerHTML = "";
   generateCards();
-  time();
+  
 }
 
