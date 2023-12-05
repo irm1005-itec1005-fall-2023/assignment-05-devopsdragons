@@ -34,7 +34,7 @@ body {
 
   min-height: 100vh;
   min-width: 100vw;
-  background: url("images/Windows style images/windows_background.jpg");
+  background: url("images/windows-style-images/windows_background.jpg");
   color: white;
 
   backdrop-filter: blur(2px);
@@ -252,7 +252,7 @@ h2{
 }
 
 .card .back{
-  background-image: url("images/Windows style images/card back.png");
+  background-image: url("images/windows-style-images/card back.png");
   background-position: center center;
   background-size: cover;
   backface-visibility: hidden;
