@@ -25,7 +25,7 @@ const timerInterval = setInterval(updateTimer, 1000);
 
 document.querySelector(".score").textContent = score;
 
-fetch("./data/cards.json")
+fetch("./data/cards-easy.json")
   .then((res) => res.json())
   .then((data) => {
     cards = [...data, ...data];
@@ -108,18 +108,21 @@ function resetBoard() {
   lockBoard = false;
 }
 
-function restart() {
-  timerSeconds = 0;
-  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+// function restart() {
+//   timerSeconds = 0;
+//   document.querySelector('.timer').textContent = formatTime(timerSeconds);
 
-  resetBoard();
-  shuffleCards();
-  score = 0;
-  document.querySelector(".score").textContent = score;
-  gridContainer.innerHTML = "";
-  generateCards();
-  timer();
-}
+//   resetBoard();
+//   shuffleCards();
+//   score = 0;
+//   document.querySelector(".score").textContent = score;
+//   gridContainer.innerHTML = "";
+//   generateCards();
+// }
+
+
+//////////////////
+
 
 // function completedCheck(){
 //   const cards_to_check = document.getElementById("grid-container")

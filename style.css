@@ -1,83 +1,46 @@
-/*
-  CSS File
-*/
+/* * { border: 1px solid red; } */
 
-/*
- VARIABLES
-*/
-:root {
-  /* Core colours */
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --colour-amaranth: #e63946;
-  --colour-peppermint: #f1faee;
-  --colour-aquaisland: #a8dadc;
-  --colour-wedgewood: #457b9d;
-  --colour-cello: #1d3557;
-
-  /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
-
-  /* Body configuration */
-  --body-default-colour: var(--colour-peppermint);
-  --body-background-colour: var(--colour-cello);
-}
-
-/*
-  PAGE / BODY
-*/
 @font-face {
-  font-family: xp; src: url(./fonts/TAHOMA.TTF);
+  font-family: 'TAHOMA'; 
+  src: url(./fonts/TAHOMA.TTF);
 }
 
 body {
-  font-family: xp;
-
-  min-height: 100vh;
-  min-width: 100vw;
-  background: url("images/windows-style-images/windows_background.jpg");
-  color: white;
-
-  backdrop-filter: blur(2px);
+  background:url(images/windows-images/windows_background.jpg);
+  background-size:cover;
+  font-family:'TAHOMA', sans-serif;
+}
+.container {
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
 }
 
-h1{
-  font-family: Tahoma;
-  text-align: center;
-  font-weight: 700;
-  font-size: 50px;
-
-  text-decoration: wavy;
+h1 {
+  text-align:center;
+  font-weight: bold;
+  font-size:3rem;
+  letter-spacing: 0.5rem;
   text-shadow: 0.1rem 0.1rem  #1d3557;
   color: #f4f8f8;
+  margin-bottom:10px;
 }
 
-p{
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
+.score-info p {
+  font-size:30px;
+  font-weight:bold;
 }
 
-.actions{
-  /* might want to change to grid in future */
-  display: flex;
-  justify-content: center;
-}
+/*The following defines the styling for the window border.*/
 
-.actions button{
-  padding: 8px 16px;
-  font-size: 30px;
-  border-radius: 5px;
-}
-
-
-/* The windows xp style window ///////////////////////////////////////////////*/
 .window-content {
   background-color: #d9d9d9;
   border: 1px solid black;
   border-radius:5px 5px 0 0;
 
-  margin: 2rem 15rem; /* if add levels, use reposonsive */
-  margin-bottom: 10rem;
+  width:800px;
+  /* margin:1rem 30rem 3rem 30rem; */
 
   border-color: #0072ef #01279e #01279e #0236d8;
 
@@ -161,43 +124,28 @@ h2{
   }
 }
 
-/* ///////////////////////////////////////////////////////////////////////////*/
+/*box styling*/
 
 .grid-container{
   flex:1;
-  margin: 1rem 0rem 0.5rem 2rem;
+  margin: 1rem;
   padding: 1rem;
   /* border: 1px solid rgb(166, 212, 252);
   background-color: rgb(239, 153, 248); */
 
   grid-row-start: 2;
-  width: 50rem;
+  width: 30rem;
+  height:30rem;
 
   display: grid;
   justify-content: center;
   row-gap: 1rem;
   column-gap: 2.7rem;
-  grid-template-columns: repeat(6, 6rem);
+  grid-template-columns: repeat(4, 4.5rem);
   /* grid-template-rows: repeat(2, calc(140px / 2 * 3)); */
 }
 
-/* Styling the bars ////////////////////////////////////////////////////// */
-
-/* fix: changed the cards smaller
-        decrese the gap between cards
-        more space for buttons on bottom
-        */
-
-.bottom-bar {
-  background-color: rgb(199, 199, 199);
-  box-shadow: inset -0.2em 0.2em 0.2em -0.1em  rgba(255, 255, 255, 1), inset 0.2em 0.2em 0.2em -0.1em rgba(0,0,0,0.4);
-  /* margin: 2rem 2rem 2rem 2rem; */
-  margin: 0rem 1rem 2rem 2rem;
-  padding: 1rem;
-
-  grid-column-start: 1;
-  grid-row-start: 3;
-}
+/* The following is styles for the right bar.*/
 
 .right-bar {
   background-color: rgb(199, 199, 199);
@@ -209,84 +157,100 @@ h2{
 
   margin: 2rem 2rem 2rem 0rem;
 }
+.right-bar img {
+height:310px;
+margin-left:17px;
+border-style:inset;
+border-width:5px;
+}
+.score-info {
+  padding:1rem;
+}
 
-/* Styling the flipping card ////////////////////////////////////////////////////// */
+/*card styles*/
 .card{
-  /* height: calc(140px / 2 * 3); */
-  height: 6rem;
-  width: 6rem;
-  grid-gap: 0.2rem;
+/* height: calc(140px / 2 * 3); */
+height: 6rem;
+width: 6rem;
+grid-gap: 0.2rem;
 
-  border-radius: 15px;
-  background-color: white;
+border-radius: 15px;
+background-color: white;
 
-  position: relative;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease-in-out;
+position: relative;
+transform-style: preserve-3d;
+transition: all 0.5s ease-in-out;
 }
-
 .front-image{
-  width: 60px;
-  height: 60px;
+width: 60px;
+height: 60px;
 }
-
 .card.flipped{
-  transform: rotateY(180deg);
+transform: rotateY(180deg);
 }
 
 .front,.back{
-  backface-visibility: hidden;
-  position: absolute;
-  border-radius: 8px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+backface-visibility: hidden;
+position: absolute;
+border-radius: 8px;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 }
-
 .card .front{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotateY(180deg);
+display: flex;
+justify-content: center;
+align-items: center;
+transform: rotateY(180deg);
 }
 
 .card .back{
-  background-image: url("images/windows-style-images/card back.png");
-  background-position: center center;
-  background-size: cover;
-  backface-visibility: hidden;
+background-image: url("images/windows-images/card-back.png");
+background-position: center center;
+background-size: cover;
+backface-visibility: hidden;
 }
 
 .actions {
-  display: flex;
-  flex-grow: initial;
-  justify-content: space-around;
+display: flex;
+flex-grow: initial;
+justify-content: space-around;
 
 }
 
 .btn-primary {
-  display: flex;
-  text-shadow: 0 0 2px rgba(0,0,0,.3);
-  font-family: Tahoma;
-  border-color: rgb(145, 144, 144);
+display: flex;
+text-shadow: 0 0 2px rgba(0,0,0,.3);
+font-family: Tahoma;
+border-color: rgb(145, 144, 144);
 
-  background-color: rgb(199, 199, 199);
-  box-shadow: 
-  inset 0.2em 0.2em 0.3em -0.1em  rgba(255, 255, 255, 1), 
-  inset 0.2em 0.2em 0.3em -0.1em rgba(0,0,0,0.4),
-  inset 0.2em 0.2em 0.2em -10em rgba(0,0,0,5),
-  inset -0.2em -0.2em 0.2em -1em rgba(0,0,0,5);
+background-color: rgb(199, 199, 199);
+box-shadow: 
+inset 0.2em 0.2em 0.3em -0.1em  rgba(255, 255, 255, 1), 
+inset 0.2em 0.2em 0.3em -0.1em rgba(0,0,0,0.4),
+inset 0.2em 0.2em 0.2em -10em rgba(0,0,0,5),
+inset -0.2em -0.2em 0.2em -1em rgba(0,0,0,5);
 }
 
 .btn-primary img{
-  width: 3rem;
+width: 3rem;
 }
 
+/*START BUTTON*/
 
+.btn-start-menu {
+position: absolute;
+cursor:pointer;
+bottom:0px;
+left:0px;
+background-color:transparent;
+border-style:none;
+overflow:hidden;
+}
 
 /*
-  Screen reader text utility class
+Screen reader text utility class
 */
 .sr-only {
   position: absolute;

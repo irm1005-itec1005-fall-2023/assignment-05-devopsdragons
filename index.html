@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- test -->
+
   <head>
-    <title>Group Project</title>
+    <title>Flipping Windows</title>
     <meta charset="UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,11 +11,14 @@
     <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./style.css" />
 
-    <!-- NOTE TO SELF DO NOT FORGET TO CHANGE THIS OR BIG HAHA -->
-    <link rel="icon" href="./images/favicon/ijustneedtofindthistab.jpg" type="image/svg+xml" />
+    <link rel="icon" href="./images/favicon/windows-favicon.png" type="image/svg+xml" />
   </head>
-  <body>
+
+<body>
+<main>
+  <div class="container">
     <h1>Flipping Windows</h1>
+  
     <div class="window-content">
       <h2>
         <div class="text">
@@ -23,33 +26,29 @@
         </div> 
         <a href="#" class="close">Close</a>
       </h2>
+
       <div class="grid-container"></div>
-    
 
       <section class="right-bar">
-        <p>Flips: <span class="score"></span></p> <!-- Move where needed -->
+
+        <div class="score-info">
+        <p>Flips: <span class="score"></span></p>
         <p>Time: <span  class ="timer"></span></p>
-      </section>
-
-      <section class="bottom-bar">
-        <div class="actions">
-
-          <button class="btn-primary">
-            <img src="images/windows-style-images/windows_start.png">
-            Start
-          </button> 
-
-          <button onclick="restart()"class="btn-primary">Restart</button> 
-          <!-- onclicks are evil -->
-          <button onclick="menu()" class="btn-primary">Menu</button>
         </div>
+
+        <img src="./images/windows-images/windows-loading.gif" />
+
+        <!-- <div class="actions">
+          <button id="btn-start" onclick="restart()"> <img src="images/windows-images/windows-start.png"></button> 
+          <button id="btn-pause"> on <imgclick="menu()"> src="./images/windows-images/Standby.png"></button>
+        </div> -->
+
       </section>
+
     </div>
-
-    <!-- as will this to achieve our desired look -->
-    
-    <script src="./script.js"></script>
-  </body>
+    <button class="btn-start-menu"><img src="./images/windows-images/start-button.png" /></button>
+  </div>
+</main>
+  <script src="./script.js"></script>
+</body>
 </html>
-
-<!--comment for commit and sync-->
