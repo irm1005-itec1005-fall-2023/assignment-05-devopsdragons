@@ -1,34 +1,34 @@
 [
     {
-        "image": "../assets/Audio-CD.png",
+        "image": "./assets/Audio-CD.png",
         "name": "audio-cd"
     },
     {
-        "image": "../assets/Floppy-Disk.png",
+        "image": "./assets/Floppy-Disk.png",
         "name": "floppy-disk"
     },
     {
-        "image": "../assets/Internet-Connection-Wizard.png",
+        "image": "./assets/Internet-Connection-Wizard.png",
         "name": "internet-connection-wizard"
     },
     {
-        "image": "../assets/MSN-Email.png",
+        "image": "./assets/MSN-Email.png",
         "name": "msn-email"
     },
     {
-        "image": "../assets/Notepad.png",
+        "image": "./assets/Notepad.png",
         "name": "notepad"
     },
     {
-        "image": "../assets/Paint.png",
+        "image": "./assets/Paint.png",
         "name": "paint"
     },
     {
-        "image": "../assets/Tour-XP.png",
+        "image": "./assets/Tour-XP.png",
         "name": "tour-xp"
     },
     {
-        "image": "../assets/Windows-Messenger.png",
+        "image": "./assets/Windows-Messenger.png",
         "name": "windows-messenger"
     }
 ]
