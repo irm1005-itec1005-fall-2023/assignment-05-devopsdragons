@@ -2,7 +2,15 @@ const gridContainer = document.querySelector(".grid-container");
 let cards = [];
 let firstCard, secondCard;
 let lockBoard = false;
+let flipCount = 0;
 let score = 0;
+let finalScore = 0;
+
+//Things to fix:
+// Stop timer ?
+// score system needs rework
+// rank function
+// restart after one round also has blur filter
 
 //
 function formatTime(seconds) {
@@ -23,7 +31,7 @@ let timerSeconds = 0;
 const timerInterval = setInterval(updateTimer, 1000);
 //
 
-document.querySelector(".score").textContent = score;
+document.querySelector(".flipCount").textContent = flipCount;
 
 fetch("./data/cards-easy.json")
   .then((res) => res.json())
@@ -60,6 +68,8 @@ function generateCards() {
     gridContainer.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
   }
+
+  completedCheck(cards.length);
 }
 
 function flipCard() {
@@ -76,8 +86,8 @@ function flipCard() {
   secondCard = this;
   lockBoard = true;
 
-  score++;
-  document.querySelector(".score").textContent = score;
+  flipCount++;
+  document.querySelector(".flipCount").textContent = flipCount;
   checkForMatch();
 }
 
@@ -85,6 +95,12 @@ function checkForMatch() {
   let isMatch = firstCard.dataset.name === secondCard.dataset.name;
 
   isMatch ? disableCards() : unflipCards();
+
+  if (isMatch === true){
+    score++;
+  }
+
+  completedCheck(cards.length);
 }
 
 function disableCards() {
@@ -108,25 +124,76 @@ function resetBoard() {
   lockBoard = false;
 }
 
-// function restart() {
-//   timerSeconds = 0;
-//   document.querySelector('.timer').textContent = formatTime(timerSeconds);
 
-//   resetBoard();
-//   shuffleCards();
-//   score = 0;
-//   document.querySelector(".score").textContent = score;
-//   gridContainer.innerHTML = "";
-//   generateCards();
+// Start Menu functions ////////////////////////////////////////////////////
+
+function restart() {
+  timerSeconds = 0;
+  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+
+  resetBoard();
+  shuffleCards();
+  flipCount = 0;
+  document.querySelector(".flipCount").textContent = flipCount;
+  gridContainer.innerHTML = "";
+  generateCards();
+}
+
+
+
+function rank(){
+  const rightBarDis = document.getElementById("right-bar-display");
+  console.log(rightBarDis.style.display === "block")
+  if (rightBarDis.style.display === "none"){
+    rightBarDis.style.display = "block";
+  }
+    
+  else if (rightBarDis.style.display === "block"){
+    rightBarDis.style.display = "none";
+  }
+}
+
+// function saveData(){
+//   localStorage.setItem("data", finalScore);
 // }
+
+// function showSaved(){
+//   listContainer.innerHTML = localStorage.getItem("data");
+// }
+
+// showSaved();
 
 
 //////////////////
 
+const winImage = document.getElementById("win-window");
+const displayScore = document.getElementById("score-display");
+const scoreContainer = document.getElementById("right-bar-display-2");
 
-// function completedCheck(){
-//   const cards_to_check = document.getElementById("grid-container")
-//   console.log(cards_to_check.length);
+function completedCheck(length){
+
+  score = 8; /* For testing, delete after */
+  console.log(score === length/2);
+  if (score === length/2){
+    console.log("win");
+    winImage.style.display = "block";
+    finalScore = score*1000 - timerSeconds*100;
+
+    // blurScreen = document.getElementById("container");
+    // blurScreen.style.filter = "blur(10px)";
+    // setTimeout(unBlur, 10000);
+
+    displayScore.innerHTML = finalScore + " Points!";
+    const newScore = document.createElement("li");
+    newScore.innerHTML = ` `+finalScore+` Points!`;
+    scoreContainer.appendChild(newScore);
+    
+  }
+  else{
+    winImage.style.display = "none";
+  }
+}
+
+// function unBlur(){
+//   blurScreen.style.filter = "none";
 // }
-
-// completedCheck()

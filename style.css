@@ -6,15 +6,16 @@
 }
 
 body {
-  background:url(images/windows-images/windows_background.jpg);
+  background:url(images/windows_images/windows_background.jpg);
   background-size:cover;
   font-family:'TAHOMA', sans-serif;
 }
-.container {
+#container {
   width:100%;
   display:flex;
   flex-direction: column;
   align-items:center;
+  justify-items: center;
 }
 
 h1 {
@@ -28,7 +29,12 @@ h1 {
 }
 
 .score-info p {
-  font-size:30px;
+  font-size: 1.7rem;
+  font-weight:bold;
+}
+
+.score-info p .timer {
+  font-size: 1.7rem;
   font-weight:bold;
 }
 
@@ -38,6 +44,8 @@ h1 {
   background-color: #d9d9d9;
   border: 1px solid black;
   border-radius:5px 5px 0 0;
+
+  justify-self: center;
 
   width:800px;
   /* margin:1rem 30rem 3rem 30rem; */
@@ -157,17 +165,32 @@ h2{
 
   margin: 2rem 2rem 2rem 0rem;
 }
-.right-bar img {
-height:310px;
-margin-left:17px;
-border-style:inset;
-border-width:5px;
+
+#right-bar-display {
+  display: block;
+
+  height:310px;
+  margin-left:17px;
+  border-style:inset;
+  border-width:5px;
 }
+
+#right-bar-display-2 {
+  height:310px;
+  margin-left:17px;
+  border-style:inset;
+  border-width:5px;
+  }
+
+#right-bar-display-2 {
+  /* list-style: none; */
+}
+
 .score-info {
   padding:1rem;
 }
 
-/*card styles*/
+/*card styles/////////////////////////////////////////////////////////////////////////*/
 .card{
 /* height: calc(140px / 2 * 3); */
 height: 6rem;
@@ -206,7 +229,7 @@ transform: rotateY(180deg);
 }
 
 .card .back{
-background-image: url("images/windows-images/card-back.png");
+background-image: url("images/windows_images/card_back.png");
 background-position: center center;
 background-size: cover;
 backface-visibility: hidden;
@@ -237,16 +260,154 @@ inset -0.2em -0.2em 0.2em -1em rgba(0,0,0,5);
 width: 3rem;
 }
 
-/*START BUTTON*/
+/* Windows tool bar///////////////////////////////////////////// */
+.tool-bar {
+  background: #006fea;
+  line-height: 32px;
+  height: 2.55rem;
+
+  background-image:
+    linear-gradient(to right, #0050db, rgba(255,255,255,.1) 4px, rgba(255,255,255,0) 200px),
+    linear-gradient(to left, #0034b0, #0056e1 1px, #0064f4 2px, rgba(0,0,0,0) 3px),
+    linear-gradient(to bottom, #4aa9ff, #33a4ff 1px, #008aff 2px, #007ef4 3px, #0075f0 4px, rgba(0,0,0,0) 5px),
+    linear-gradient(to top, #005dd9, #0067e9 1px, #007afb 2px, #0081fb 3px, rgba(0,0,0,0) 4px);
+
+  padding-left: 100%;
+  margin-right: 0;
+  position: absolute;
+  cursor:pointer;
+  bottom:0px;
+  left: 0;
+  overflow:hidden;
+
+}
+
+/*START BUTTON /////////////////////////////////////////////////*/
 
 .btn-start-menu {
-position: absolute;
-cursor:pointer;
-bottom:0px;
-left:0px;
-background-color:transparent;
-border-style:none;
-overflow:hidden;
+  margin-left: 0;
+  padding-left: 0;
+  position: absolute;
+  cursor:pointer;
+  bottom:0px;
+  left: 0;
+
+  background-color:transparent;
+  border-style:none;
+  overflow:hidden;
+
+  /* background: url("./images/windows_images/start_button.png"); */
+}
+
+.btn-start-menu img:hover{
+  content: url("./images/windows_images/start_hover.png");
+}
+
+.btn-start-menu img:active{
+  content: url("./images/windows_images/start_click.png");
+}
+
+/* Other buttons in start menu ///////////////////////////*/
+.btn-menu-content {
+  font-family: Tahoma;
+  position: absolute;
+  cursor:pointer;
+
+  left: 0; /* dissapears after I change this value, same with right: */
+
+  width: 8rem;
+  height: 2.5rem;
+
+  background-color:transparent;
+  border-style:none;
+  overflow:hidden;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  row-gap: 0.25rem;
+}
+
+.btn-menu-content img {
+  width: 2rem;
+  height: 2rem;
+  margin: 0rem 1rem 0rem 0rem;
+
+  grid-column-end: 2;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.btn-menu-content p {
+  grid-area: 1 / 2 / 3 / 4;
+  color: white;
+}
+
+.btn-menu-content span{
+  background-color: rgb(255, 255, 255);
+  width: 8rem;
+  grid-area: 2 / 1 / 4 / 5;
+}
+
+.btn-menu-content:active{
+  background-color: #0034b0;
+}
+
+#btn-restart {
+  margin: 0.1rem 0 0 9rem;
+}
+
+#btn-rank {
+  margin: 0.1rem 0 0 19rem;
+  overflow:hidden;
+}
+
+
+/* When the player wins///////////////////////////////////////////////////////// */
+#win-window {
+  /* background-color: #e81000; */
+
+  position: absolute;
+  z-index: 2;
+
+  width: 40rem;
+  height: 20rem;
+  /* background-color: #0034b1; */
+
+  top:25%;
+  right: -100%;
+  animation: left-to-right 10s;
+}
+
+#win-window img{
+  width: 100%;
+  height: 15rem;
+  transform: scaleX(-1);
+}
+
+#win-window p {
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,144,0,1) 22%, rgba(255,244,0,1) 44%, rgba(90,214,23,1) 62%, rgba(0,177,233,1) 81%, rgba(76,0,255,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* -webkit-text-stroke: 1px #ffffff; */
+  text-shadow: -2px -2px 1px rgb(0, 0, 0);
+  /* border: 3px solid #ffffff; */
+
+  font-size: 3rem;
+}
+
+@-webkit-keyframes left-to-right {
+  0% {
+    right: -100%;
+  }
+
+  97%{
+    opacity: 100%;
+  }
+  100% {
+    right: 100%;
+    opacity: 0%;
+    display: none;
+  }
 }
 
 /*

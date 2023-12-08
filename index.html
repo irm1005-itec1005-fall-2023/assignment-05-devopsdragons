@@ -14,9 +14,14 @@
     <link rel="icon" href="./images/favicon/windows-favicon.png" type="image/svg+xml" />
   </head>
 
-<body>
+<body id="body">
+  <div id="win-window" disabled>
+    <p>You weeeeeeeeeee!!!!!!!!!!</p>
+    <img class="front-image" src='images/nyon_cat.gif' alt="nyon cat">
+    <p id="score-display"></p>
+  </div>
 <main>
-  <div class="container">
+  <div id="container">
     <h1>Flipping Windows</h1>
   
     <div class="window-content">
@@ -32,21 +37,22 @@
       <section class="right-bar">
 
         <div class="score-info">
-        <p>Flips: <span class="score"></span></p>
-        <p>Time: <span  class ="timer"></span></p>
+          <p>Flips: <span class="flipCount"></span></p>
+          <p>Time: <span  class ="timer"></span></p>
         </div>
 
-        <img src="./images/windows-images/windows-loading.gif" />
+        <img id="right-bar-display" src="./images/windows_images/windows_loading.gif" />
 
-        <!-- <div class="actions">
-          <button id="btn-start" onclick="restart()"> <img src="images/windows-images/windows-start.png"></button> 
-          <button id="btn-pause"> on <imgclick="menu()"> src="./images/windows-images/Standby.png"></button>
-        </div> -->
+        <ul id="right-bar-display-2"></ul>
 
       </section>
-
     </div>
-    <button class="btn-start-menu"><img src="./images/windows-images/start-button.png" /></button>
+
+    <div class="tool-bar">
+      <button class="btn-start-menu"><img src="./images/windows_images/start_button.png" /></button>
+      <button class="btn-menu-content" id="btn-restart" onclick="restart()"><img src="./images/windows_images/Standby.png"><p>restart</p><span></span></button>
+      <button class="btn-menu-content" id="btn-rank" onclick="rank()"><img src="./images/windows_images/card-front.png"><p>rank</p><span></span></button>
+    </div>
   </div>
 </main>
   <script src="./script.js"></script>
