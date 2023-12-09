@@ -33,11 +33,16 @@ function formatTime(seconds) {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
+let counting = true;
+
 // Function to update the timer every second----------------------------
 function updateTimer() {
-  timerSeconds++;
-  console.log("update timer", timerSeconds);
-  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+  if(counting === true){
+    timerSeconds++;
+    console.log("update timer", timerSeconds);
+    document.querySelector('.timer').textContent = formatTime(timerSeconds);
+  }
+
 }
 
 let timerSeconds = 0;
@@ -156,7 +161,7 @@ function resetBoard() {
 //
 
 function restart() {
-  clearInterval(timerInterval);
+  counting = true;
   console.log("restart", timerSeconds);
   timerSeconds = 0;
   document.querySelector('.timer').textContent = formatTime(timerSeconds);
@@ -169,7 +174,6 @@ function restart() {
   generateCards();
 
   updateTimer();
-  setInterval(updateTimer, 1000);
 
   const restart_sound = new Audio('/audio/restart-recycle.mp3');
   restart_sound.play();
@@ -267,14 +271,13 @@ function completedCheck(length) {
     displayScore.innerHTML = finalScore + " Points!";
 
     // Stop the timer interval
-    clearInterval(timerInterval);
 
     const win_sound = new Audio('/audio/win-tada.mp3');
     win_sound.play();
     win_sound.volume = 0.1;
 
     display_score_rank(finalScore,timerSeconds);
-
+    counting = false;
     score = 0;
   } else {
     winImage.style.display = "none";
