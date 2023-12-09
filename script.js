@@ -33,6 +33,7 @@ function formatTime(seconds) {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
+/* Setting counting for timer to true */
 let counting = true;
 
 // Function to update the timer every second----------------------------
@@ -43,6 +44,7 @@ function updateTimer() {
     document.querySelector('.timer').textContent = formatTime(timerSeconds);
   }
 }
+ 
 
 let timerSeconds = 0;
 
