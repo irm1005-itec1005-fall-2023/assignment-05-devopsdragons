@@ -352,14 +352,32 @@ width: 3rem;
 }
 
 .btn-menu-content p {
-  grid-area: 1 / 2 / 3 / 4;
+  
   color: white;
 }
 
-.btn-menu-content span{
+.btn-menu-content #line1{
   background-color: rgb(255, 255, 255);
   width: 8rem;
   grid-area: 2 / 1 / 4 / 5;
+}
+
+.btn-menu-content #line2{
+  background-color: rgb(255, 255, 255);
+  width: 8rem;
+  grid-area: 2 / 1 / 4 / 5;
+}
+
+.btn-menu-content #text-content1{
+  color: white;
+  grid-area: 1 / 2 / 3 / 4;
+
+}
+
+.btn-menu-content #text-content2{
+  color: white;
+  grid-area: 1 / 2 / 3 / 4;
+
 }
 
 .btn-menu-content:active{

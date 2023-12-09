@@ -28,6 +28,8 @@ A forum post with various start menu button packs.
 
 -->
 
+<!-- Tested on laptop screens -->
+
 <body id="body">
   <div id="win-window">
     <p>You weeeeeeeeeee!!!!!!!!!!</p>
@@ -39,35 +41,35 @@ A forum post with various start menu button packs.
     <h1>Flipping Windows</h1>
   
     <div class="window-content">
-      <span id="welcome">
+      <div id="welcome">
         <div class="text">
           <h2>Welcome to Windows</h2>
         </div> 
         <a href="#" class="close">Close</a>
-      </span>
+      </div>
 
       <div class="grid-container"></div>
 
-      <section class="right-bar">
+      <div class="right-bar">
 
         <div class="score-info">
           <p>Flips: <span class="flipCount"></span></p>
           <p>Time: <span  class ="timer"></span></p>
         </div>
 
-        <img id="right-bar-display" src="./images/windows_images/windows_loading.gif" />
+        <img id="right-bar-display" src="./images/windows_images/windows_loading.gif" alt="Windows XP loading animation"/>
 
         <ul id="right-bar-display-2"></ul>
 
-      </section>
+      </div>
     </div>
 
     <div class="tool-bar">
       <!--start button non functional at the moment-->
-      <button class="btn-start-menu"><img src="./images/windows_images/start_button.png" /></button>
-      <button class="btn-menu-content" id="btn-restart" onclick="restart()"><img src="./images/windows_images/Standby.png"><p>restart</p><span></span></button>
+      <button class="btn-start-menu"><img src="./images/windows_images/start_button.png" alt="XP Start Button"/></button>
+      <button class="btn-menu-content" id="btn-restart" onclick="restart()"><img src="./images/windows_images/Standby.png" alt="standby"><span id="text-content1">restart</span><span id="line1"></span></button>
       <!--rank button non functional at the moment-->
-      <button class="btn-menu-content" id="btn-rank" onclick="rank()"><img src="./images/windows_images/Address-Book.png"><p>rank</p><span></span></button>
+      <button class="btn-menu-content" id="btn-rank" onclick="rank()"><img src="./images/windows_images/Address-Book.png" alt="adress book"><span id="text-content2">rank</span><span id="line2"></span></button>
     </div>
   </div>
 </main>
