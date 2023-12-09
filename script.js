@@ -33,11 +33,15 @@ function formatTime(seconds) {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
+let counting = true;
+
 // Function to update the timer every second----------------------------
-function updateTimer() {
-  timerSeconds++;
-  console.log("update timer", timerSeconds);
-  document.querySelector('.timer').textContent = formatTime(timerSeconds);
+function updateTimer() { 
+  if(counting === true){
+    timerSeconds++;
+    console.log("update timer", timerSeconds);
+    document.querySelector('.timer').textContent = formatTime(timerSeconds);
+  }
 }
 
 let timerSeconds = 0;
@@ -156,7 +160,8 @@ function resetBoard() {
 //
 
 function restart() {
-  clearInterval(timerInterval);
+  //clearInterval(timerInterval);]
+  counting = true;
   console.log("restart", timerSeconds);
   timerSeconds = 0;
   document.querySelector('.timer').textContent = formatTime(timerSeconds);
@@ -169,7 +174,7 @@ function restart() {
   generateCards();
 
   updateTimer();
-  setInterval(updateTimer, 1000);
+  
 
   const restart_sound = new Audio('/audio/restart-recycle.mp3');
   restart_sound.play();
@@ -254,6 +259,7 @@ const scoreContainer = document.getElementById("right-bar-display-2");
 
 function completedCheck(length) {
   // this is changed for testing original : score === length / 2
+  
   if (score === 2) {
     console.log("win");
     winImage.style.display = "block";
@@ -263,7 +269,7 @@ function completedCheck(length) {
     }
 
     // Stop the timer interval
-    clearInterval(timerInterval);
+    //clearInterval(timerInterval);
     displayScore.innerHTML = finalScore + " Points!";
 
     score = 0;
@@ -273,7 +279,7 @@ function completedCheck(length) {
     win_sound.volume = 0.1;
 
     display_score_rank(finalScore);
-
+    counting = false;
   } else {
     winImage.style.display = "none";
   }
