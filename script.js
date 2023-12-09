@@ -11,7 +11,15 @@ let finalScore = 0;
 // rank function
 // restart after one round also has blur filter
 
+//citations
+// javascript and html frame:
+// audio https://gomakethings.com/how-to-play-a-sound-with-javascript/
+// the windows xp style
+
 //
+//Timer stuff ////////////////////////////////////////////////////////////////////////////////////////////////
+//
+
 function formatTime(seconds) {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -24,11 +32,11 @@ function formatTime(seconds) {
 
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
-  //
 
-// Function to update the timer every second
+// Function to update the timer every second----------------------------
 function updateTimer() {
   timerSeconds++;
+  console.log("update timer", timerSeconds);
   document.querySelector('.timer').textContent = formatTime(timerSeconds);
 }
 
@@ -38,8 +46,10 @@ let timerSeconds = 0;
 updateTimer();
 
 const timerInterval = setInterval(updateTimer, 1000);
-//
 
+//
+// Card functions/////////////////////////////////////////////////////////////////////////////////////
+//
 document.querySelector(".flipCount").textContent = flipCount;
 
 fetch("./data/cards-easy.json")
@@ -107,6 +117,14 @@ function checkForMatch() {
 
   if (isMatch === true){
     score++;
+    const score_sound = new Audio('/audio/score-chimes.mp3');
+    score_sound.play();
+    score_sound.volume = 0.3;
+  }
+  else {
+    const flip_sound = new Audio('/audio/flip-ballon.mp3');
+    flip_sound.play();
+    flip_sound.volume = 0.3;
   }
 
   completedCheck(cards.length);
@@ -133,10 +151,13 @@ function resetBoard() {
   lockBoard = false;
 }
 
-
-// Start Menu functions ////////////////////////////////////////////////////
+//
+// Start Menu functions ///////////////////////////////////////////////////////////////////////////////////
+//
 
 function restart() {
+  clearInterval(timerInterval);
+  console.log("restart", timerSeconds);
   timerSeconds = 0;
   document.querySelector('.timer').textContent = formatTime(timerSeconds);
 
@@ -146,21 +167,41 @@ function restart() {
   document.querySelector(".flipCount").textContent = flipCount;
   gridContainer.innerHTML = "";
   generateCards();
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  const restart_sound = new Audio('/audio/restart-recycle.mp3');
+  restart_sound.play();
+  restart_sound.volume = 0.3;
 }
+
+////toggle between rank and the nice gif----------------------------------------------//
+const rightBarDis = document.getElementById("right-bar-display");
+const rightBarDis2 = document.getElementById("right-bar-display-2");
+
+const rightBarDis_t = window.getComputedStyle(rightBarDis);
+const rightBarDis2_t = window.getComputedStyle(rightBarDis2);
 
 
 
 function rank(){
-  const rightBarDis = document.getElementById("right-bar-display");
-  console.log(rightBarDis.style.display === "block")
-  if (rightBarDis.style.display === "none"){
+  if (rightBarDis_t.display === "none"){
     rightBarDis.style.display = "block";
+    rightBarDis2.style.display = "none";
   }
     
-  else if (rightBarDis.style.display === "block"){
+  else if (rightBarDis_t.display === "block"){
     rightBarDis.style.display = "none";
+    rightBarDis2.style.display = "block";
   }
+
+  const rank_sound = new Audio('/audio/rank-information-bar.mp3');
+  rank_sound.play();
+  rank_sound.volume = 0.3;
 }
+
+rightBarDis2.style.display = "none";
 
 // function saveData(){
 //   localStorage.setItem("data", finalScore);
@@ -179,29 +220,29 @@ const winImage = document.getElementById("win-window");
 const displayScore = document.getElementById("score-display");
 const scoreContainer = document.getElementById("right-bar-display-2");
 
-function completedCheck(length){
+// function completedCheck(length){
 
-  score = 8; /* For testing, delete after */
-  console.log(score === length/2);
-  if (score === length/2){
-    console.log("win");
-    winImage.style.display = "block";
-    finalScore = score*1000 - timerSeconds*100;
+//   score = 8; /* For testing, delete after */
+//   console.log(score === length/2);
+//   if (score === length/2){
+//     console.log("win");
+//     winImage.style.display = "block";
+//     finalScore = score*1000 - timerSeconds*100;
 
-    // blurScreen = document.getElementById("container");
-    // blurScreen.style.filter = "blur(10px)";
-    // setTimeout(unBlur, 10000);
+//     // blurScreen = document.getElementById("container");
+//     // blurScreen.style.filter = "blur(10px)";
+//     // setTimeout(unBlur, 10000);
 
-    displayScore.innerHTML = finalScore + " Points!";
-    const newScore = document.createElement("li");
-    newScore.innerHTML = ` `+finalScore+` Points!`;
-    scoreContainer.appendChild(newScore);
+//     displayScore.innerHTML = finalScore + " Points!";
+//     const newScore = document.createElement("li");
+//     newScore.innerHTML = ` `+finalScore+` Points!`;
+//     scoreContainer.appendChild(newScore);
     
-  }
-  else{
-    winImage.style.display = "none";
-  }
-}
+//   }
+//   else{
+//     winImage.style.display = "none";
+//   }
+// }
 
 // function unBlur(){
 //   blurScreen.style.filter = "none";
@@ -209,20 +250,47 @@ function completedCheck(length){
 
 // this is the code where I asked chatgpt to do one thing and it decided to do everything
 
+
+
 function completedCheck(length) {
-  if (score === length / 2) {
+  // this is changed for testing original : score === length / 2
+  if (score === 1) {
     console.log("win");
     winImage.style.display = "block";
     finalScore = score * 1000 - timerSeconds * 100;
+    if(finalScore < 1){
+      finalScore = finalScore * -1;
+    }
 
     // Stop the timer interval
     clearInterval(timerInterval);
-
     displayScore.innerHTML = finalScore + " Points!";
-    const newScore = document.createElement("li");
-    newScore.innerHTML = ` ` + finalScore + ` Points!`;
-    scoreContainer.appendChild(newScore);
+
+    score = 0;
+
+    const win_sound = new Audio('/audio/win-tada.mp3');
+    win_sound.play();
+    win_sound.volume = 0.1;
+
+    display_score_rank(finalScore);
+
   } else {
     winImage.style.display = "none";
+  }
+}
+
+let scoreList = [];
+
+function display_score_rank(finalScore){
+    scoreList.push(finalScore);
+    scoreContainer.innerHTML = ""
+    scoreList.sort(function(a, b) {
+      return b - a;
+    });
+
+    for (i=0; i<scoreList.length; i++){
+      const newScore = document.createElement("li");
+      newScore.innerHTML = ` ` + scoreList[i] + ` Points!`;
+      scoreContainer.appendChild(newScore);
   }
 }

@@ -178,15 +178,21 @@ h2{
 }
 
 #right-bar-display-2 {
+  display: block;
+
   height:310px;
   margin-left:17px;
   border-style:inset;
   border-width:5px;
+
+  width: 11.2rem;
+
+  list-style: decimal;
   }
 
-/* #right-bar-display-2 {
-     list-style: none;
-} */
+#right-bar-display-2 {
+     
+}
 
 .score-info {
   padding:1rem;
@@ -377,7 +383,7 @@ width: 3rem;
   /* background-color: #0034b1; */
 
   top:25%;
-  right: -100%;
+  right: -60%;
   animation: left-to-right 10s;
 }
 
@@ -400,7 +406,7 @@ width: 3rem;
 
 @-webkit-keyframes left-to-right {
   0% {
-    right: -100%;
+    right: -60%;
   }
 
   97%{
