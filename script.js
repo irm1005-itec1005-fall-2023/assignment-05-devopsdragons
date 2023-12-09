@@ -33,18 +33,12 @@ function formatTime(seconds) {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
-/* Setting counting for timer to true */
-let counting = true;
-
 // Function to update the timer every second----------------------------
-function updateTimer() { 
-  if(counting === true){
-    timerSeconds++;
-    console.log("update timer", timerSeconds);
-    document.querySelector('.timer').textContent = formatTime(timerSeconds);
-  }
+function updateTimer() {
+  timerSeconds++;
+  console.log("update timer", timerSeconds);
+  document.querySelector('.timer').textContent = formatTime(timerSeconds);
 }
- 
 
 let timerSeconds = 0;
 
@@ -162,8 +156,7 @@ function resetBoard() {
 //
 
 function restart() {
-  //clearInterval(timerInterval);]
-  counting = true;
+  clearInterval(timerInterval);
   console.log("restart", timerSeconds);
   timerSeconds = 0;
   document.querySelector('.timer').textContent = formatTime(timerSeconds);
@@ -176,7 +169,7 @@ function restart() {
   generateCards();
 
   updateTimer();
-  
+  setInterval(updateTimer, 1000);
 
   const restart_sound = new Audio('/audio/restart-recycle.mp3');
   restart_sound.play();
@@ -258,47 +251,50 @@ const scoreContainer = document.getElementById("right-bar-display-2");
 // this is the code where I asked chatgpt to do one thing and it decided to do everything
 
 
+let scoreList = [];
+let timedList = [];
 
 function completedCheck(length) {
   // this is changed for testing original : score === length / 2
-  
-  if (score === 2) {
-    console.log("win");
+  if (score === 1) {
     winImage.style.display = "block";
-    finalScore = score * 1000 - timerSeconds * 100;
-    if(finalScore < 1){
-      finalScore = finalScore * -1;
-    }
+    
+    // score_algorithmic()
 
-    // Stop the timer interval
-    //clearInterval(timerInterval);
+    // timerSeconds = 600000;
+    finalScore = (score * 1000 /timerSeconds) + 1000 ;
+    finalScore = Math.round(finalScore);
     displayScore.innerHTML = finalScore + " Points!";
 
-    score = 0;
+    // Stop the timer interval
+    clearInterval(timerInterval);
 
     const win_sound = new Audio('/audio/win-tada.mp3');
     win_sound.play();
     win_sound.volume = 0.1;
 
-    display_score_rank(finalScore);
-    counting = false;
+    display_score_rank(finalScore,timerSeconds);
+
+    score = 0;
   } else {
     winImage.style.display = "none";
   }
 }
 
-let scoreList = [];
 
-function display_score_rank(finalScore){
+function display_score_rank(finalScore,timerSeconds){
     scoreList.push(finalScore);
+    timedList.push(timerSeconds);
     scoreContainer.innerHTML = ""
     scoreList.sort(function(a, b) {
       return b - a;
     });
 
     for (i=0; i<scoreList.length; i++){
-      const newScore = document.createElement("li");
-      newScore.innerHTML = ` ` + scoreList[i] + ` Points!`;
-      scoreContainer.appendChild(newScore);
+      // for (x=0; x<timedList.length; x++){
+        const newScore = document.createElement("li");
+        newScore.innerHTML = ` ` + scoreList[i] + ` Points!` + formatTime(timedList[i]);
+        scoreContainer.appendChild(newScore);
+      // }  
   }
 }
