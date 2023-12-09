@@ -9,6 +9,7 @@ body {
   background:url(images/windows_images/windows_background.jpg);
   background-size:cover;
   font-family:'TAHOMA', sans-serif;
+  overflow:hidden;
 }
 #container {
   width:100%;
@@ -16,12 +17,13 @@ body {
   flex-direction: column;
   align-items:center;
   justify-items: center;
+  margin: 0 auto;
 }
 
 h1 {
   text-align:center;
   font-weight: bold;
-  font-size:3rem;
+  font-size:2rem;
   letter-spacing: 0.5rem;
   text-shadow: 0.1rem 0.1rem  #1d3557;
   color: #f4f8f8;
@@ -182,9 +184,9 @@ h2{
   border-width:5px;
   }
 
-#right-bar-display-2 {
-  /* list-style: none; */
-}
+/* #right-bar-display-2 {
+     list-style: none;
+} */
 
 .score-info {
   padding:1rem;
@@ -207,6 +209,7 @@ transition: all 0.5s ease-in-out;
 .front-image{
 width: 60px;
 height: 60px;
+left:-100%;
 }
 .card.flipped{
 transform: rotateY(180deg);
