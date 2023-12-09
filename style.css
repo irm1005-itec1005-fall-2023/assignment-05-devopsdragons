@@ -184,7 +184,10 @@ h2{
 }
 
 #right-bar-display-2 {
+  background-color: black;
+  color: white;
   display: block;
+  font-family: Tahoma;
 
   height: 315px;
   width: 200px;
@@ -192,8 +195,6 @@ h2{
   margin-left:17px;
   border-style:inset;
   border-width:5px;
-
-  width: 11.2rem;
 
   list-style: decimal;
   }

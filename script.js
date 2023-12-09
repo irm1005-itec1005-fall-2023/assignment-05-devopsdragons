@@ -224,49 +224,20 @@ const winImage = document.getElementById("win-window");
 const displayScore = document.getElementById("score-display");
 const scoreContainer = document.getElementById("right-bar-display-2");
 
-// function completedCheck(length){
-
-//   score = 8; /* For testing, delete after */
-//   console.log(score === length/2);
-//   if (score === length/2){
-//     console.log("win");
-//     winImage.style.display = "block";
-//     finalScore = score*1000 - timerSeconds*100;
-
-//     // blurScreen = document.getElementById("container");
-//     // blurScreen.style.filter = "blur(10px)";
-//     // setTimeout(unBlur, 10000);
-
-//     displayScore.innerHTML = finalScore + " Points!";
-//     const newScore = document.createElement("li");
-//     newScore.innerHTML = ` `+finalScore+` Points!`;
-//     scoreContainer.appendChild(newScore);
-    
-//   }
-//   else{
-//     winImage.style.display = "none";
-//   }
-// }
-
-// function unBlur(){
-//   blurScreen.style.filter = "none";
-// }
-
-// this is the code where I asked chatgpt to do one thing and it decided to do everything
-
-
 let scoreList = [];
 let timedList = [];
 
 function completedCheck(length) {
   // this is changed for testing original : score === length / 2
-  if (score === 1) {
+  if (score === length / 2) {
     winImage.style.display = "block";
     
     // score_algorithmic()
 
     // timerSeconds = 600000;
-    finalScore = (score * 1000 /timerSeconds) + 1000 ;
+    console.log(flipCount)
+    finalScore = (score * 10000 / (timerSeconds*flipCount))*20 + 1000;
+
     finalScore = Math.round(finalScore);
     displayScore.innerHTML = finalScore + " Points!";
 
@@ -288,7 +259,7 @@ function completedCheck(length) {
 function display_score_rank(finalScore,timerSeconds){
     scoreList.push(finalScore);
     timedList.push(timerSeconds);
-    scoreContainer.innerHTML = ""
+    scoreContainer.innerHTML = "";
     scoreList.sort(function(a, b) {
       return b - a;
     });
@@ -296,7 +267,7 @@ function display_score_rank(finalScore,timerSeconds){
     for (i=0; i<scoreList.length; i++){
       // for (x=0; x<timedList.length; x++){
         const newScore = document.createElement("li");
-        newScore.innerHTML = ` ` + scoreList[i] + ` Points!` + formatTime(timedList[i]);
+        newScore.innerHTML = ` ` + scoreList[i] + ` Points!` + "<br />" +formatTime(timedList[i]);
         scoreContainer.appendChild(newScore);
       // }  
   }
