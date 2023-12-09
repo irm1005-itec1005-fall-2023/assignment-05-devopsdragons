@@ -69,7 +69,7 @@ h1 {
   }
 }
 
-h2{
+#welcome{
   background: #006fea;
   line-height: 32px;
   height:30px;
@@ -82,17 +82,22 @@ h2{
     linear-gradient(to left, #0034b0, #0056e1 1px, #0064f4 2px, rgba(0,0,0,0) 3px),
     linear-gradient(to bottom, #4aa9ff, #33a4ff 1px, #008aff 2px, #007ef4 3px, #0075f0 4px, rgba(0,0,0,0) 5px),
     linear-gradient(to top, #005dd9, #0067e9 1px, #007afb 2px, #0081fb 3px, rgba(0,0,0,0) 4px);
-  font-family: sans-serif;
-  color:white;
-  font-weight: normal;
-  font-size:14px;
+
   padding-left:8px;
-  text-shadow: 1px 1px 0 #0a2a95;
+  
 
   grid-row-start: 1;
   /* grid-row-end: 4; */
   grid-column-start: 1;
   grid-column-end: 4;
+}
+
+h2{
+  font-family: sans-serif;
+  color:white;
+  font-weight: normal;
+  font-size:14px;
+  text-shadow: 1px 1px 0 #0a2a95;
 }
 
 .close{
@@ -126,8 +131,8 @@ h2{
   &:before{
     content:"×";
     position:absolute;
-    left:2.5px;
-    top:-7px;
+    left:1px;
+    top:-9px;
     color: white;
     text-shadow:none;
     font-size:23px;

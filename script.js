@@ -254,7 +254,7 @@ const scoreContainer = document.getElementById("right-bar-display-2");
 
 function completedCheck(length) {
   // this is changed for testing original : score === length / 2
-  if (score === 1) {
+  if (score === 2) {
     console.log("win");
     winImage.style.display = "block";
     finalScore = score * 1000 - timerSeconds * 100;
