@@ -176,7 +176,8 @@ h2{
 #right-bar-display {
   display: block;
 
-  height:310px;
+  height: 315px;
+  width: 200px;
   margin-left:17px;
   border-style:inset;
   border-width:5px;
@@ -185,7 +186,9 @@ h2{
 #right-bar-display-2 {
   display: block;
 
-  height:310px;
+  height: 315px;
+  width: 200px;
+  
   margin-left:17px;
   border-style:inset;
   border-width:5px;
