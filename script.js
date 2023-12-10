@@ -116,12 +116,12 @@ function checkForMatch() {
 
   if (isMatch === true){
     score++;
-    const score_sound = new Audio('/audio/score-chimes.mp3');
+    const score_sound = new Audio('score-chimes.mp3');
     score_sound.play();
     score_sound.volume = 0.3;
   }
   else {
-    const flip_sound = new Audio('/audio/flip-ballon.mp3');
+    const flip_sound = new Audio('flip-ballon.mp3');
     flip_sound.play();
     flip_sound.volume = 0.3;
   }
@@ -154,6 +154,11 @@ function resetBoard() {
 }
 
 // Start Menu functions ///////////////////////////////////////////////////////////////////////////////////
+const restartButton = document.getElementById("btn-restart");
+const rankButton = document.getElementById("btn-rank");
+restartButton.addEventListener("click", restart);
+rankButton.addEventListener("click", rank);
+
 function restart() {
   counting = true;
   console.log("restart", timerSeconds);
@@ -169,7 +174,7 @@ function restart() {
 
   updateTimer();
 
-  const restart_sound = new Audio('/audio/restart-recycle.mp3');
+  const restart_sound = new Audio('restart-recycle.mp3');
   restart_sound.play();
   restart_sound.volume = 0.3;
 }
@@ -192,7 +197,7 @@ function rank(){
     rightBarDis2.style.display = "block";
   }
 
-  const rank_sound = new Audio('/audio/rank-information-bar.mp3');
+  const rank_sound = new Audio('rank-information-bar.mp3');
   rank_sound.play();
   rank_sound.volume = 0.3;
 }
@@ -224,7 +229,7 @@ function completedCheck(length) {
 
     // Stop the timer interval
 
-    const win_sound = new Audio('/audio/win-tada.mp3');
+    const win_sound = new Audio('win-tada.mp3');
     win_sound.play();
     win_sound.volume = 0.1;
 
