@@ -26,20 +26,23 @@ Super cool Windows XP Icon resource pack by marchmountain on DeviantArt.
 A forum post with various start menu button packs.
 * http://www.classicshell.net/forum/viewtopic.php?f=18&t=3206
 
+Windows XP gradient box styles.
+* https://codepen.io/samwsmith/pen/pONaBZ?editors=1100
+
 -->
 
 <!-- Tested on laptop screens -->
-<!-- PLEASE PREVIEW OVER VS CODE IN BROWSER BECAUSE GITHUB PAGES IS EVIL AND WONT PLAY THE AUDIO >:( -->
+<!-- GitHub pages may or may not play the audio clips - it may potentially depend on your browser. Preview in VSCode if need be. -->
 
 <body id="body">
   <div id="win-window">
     <p>You weeeeeeeeeee!!!!!!!!!!</p>
-    <img class="front-image" src='images/nyon_cat.gif' alt="nyon cat">
+    <img class="front-image" src='images/nyon_cat.gif' alt="Nyan Cat success screen.">
     <p id="score-display"></p>
   </div>
 <main>
   <div id="container">
-    <h1>Flipping Windows</h1>
+    <h1>｡･:*˚:✧｡Flipping Windows｡･:*˚:✧｡</h1>
   
     <div class="window-content">
       <div id="welcome">
@@ -58,7 +61,7 @@ A forum post with various start menu button packs.
           <p>Time: <span  class ="timer"></span></p>
         </div>
 
-        <img id="right-bar-display" src="./images/windows_images/windows_loading.gif" alt="Windows XP loading animation"/>
+        <img id="right-bar-display" src="./images/windows_images/windows_loading.gif" alt="Windows XP loading animation."/>
 
         <ul id="right-bar-display-2"><li>Win to score!</li></ul>
 
@@ -66,12 +69,21 @@ A forum post with various start menu button packs.
     </div>
 
     <div class="tool-bar">
-      <!--start button non functional at the moment-->
-      <button class="btn-start-menu"><img src="./images/windows_images/start_button.png" alt="XP Start Button"/></button>
-      <button class="btn-menu-content" id="btn-restart"><img src="./images/windows_images/Standby.png" alt="standby"><span id="text-content1">restart</span><span id="line1"></span></button>
-      <!--rank button non functional at the moment-->
-      <button class="btn-menu-content" id="btn-rank"><img src="./images/windows_images/Address-Book.png" alt="adress book"><span id="text-content2">rank</span><span id="line2"></span></button>
+
+      <button id="startButton" class="btn-start-menu"><img src="./images/windows_images/start_button.png" alt="Toggle Windows XP start menu."/></button>
+
+      <button class="btn-menu-content" id="btn-restart"><img src="./images/windows_images/Standby.png" alt="Restart game."><span id="text-content1">restart</span><span id="line1"></span></button>
+      <button class="btn-menu-content" id="btn-rank"><img src="./images/windows_images/Address-Book.png" alt="Toggle rankings."><span id="text-content2">rank</span><span id="line2"></span></button>
     </div>
+
+    <div id="menuContainer" class="hidden">
+      <div class="fish-user">
+      <img class="fish" src="./images/windows_images/fish-avatar.jpg" alt="Windows XP fish avatar."/> 
+      <p>DevOpsDragons</p>
+      <img class="applications" src="./images/windows_images/startCapture.PNG" alt="Start Menu layout."/>
+      </div>
+    </div>
+
   </div>
 </main>
   <script src="./script.js"></script>

@@ -179,6 +179,19 @@ function restart() {
   restart_sound.volume = 0.3;
 }
 
+// Start button toggle /////////////////////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+  const startButton = document.getElementById('startButton');
+  const menuContainer = document.getElementById('menuContainer');
+
+  startButton.addEventListener('click', function () {
+    menuContainer.style.display = (menuContainer.style.display === 'none' || menuContainer.style.display === '') ? 'block' : 'none';
+  });
+});
+
+
+
 //Score board toggle //////////////////////////////////////////////////////////////////////////////////////
 const rightBarDis = document.getElementById("right-bar-display");
 const rightBarDis2 = document.getElementById("right-bar-display-2");
