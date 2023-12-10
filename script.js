@@ -1,3 +1,4 @@
+// initializing key variables
 const gridContainer = document.querySelector(".grid-container");
 let cards = [];
 let firstCard, secondCard;
@@ -6,20 +7,8 @@ let flipCount = 0;
 let score = 0;
 let finalScore = 0;
 
-//Things to fix:
-// score system needs rework
-// rank function
-// restart after one round also has blur filter
-
-//citations
-// javascript and html frame:
-// audio https://gomakethings.com/how-to-play-a-sound-with-javascript/
-// the windows xp style
-
-//
-//Timer stuff ////////////////////////////////////////////////////////////////////////////////////////////////
-//
-
+//Timer Stuff ////////////////////////////////////////////////////////////////////////////////////////////////
+//time formatting (00:00:00)
 function formatTime(seconds) {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -33,28 +22,28 @@ function formatTime(seconds) {
   return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
+// Enabling counting for timer (establishing logic for stoping timer when game is won)
 let counting = true;
 
-// Function to update the timer every second----------------------------
+// Function to update the timer every second
 function updateTimer() {
   if(counting === true){
     timerSeconds++;
     console.log("update timer", timerSeconds);
     document.querySelector('.timer').textContent = formatTime(timerSeconds);
   }
-
 }
 
+//initial timer value
 let timerSeconds = 0;
 
 // To make the timer appear on load
 updateTimer();
 
+// time incrementation interval
 const timerInterval = setInterval(updateTimer, 1000);
 
-//
-// Card functions/////////////////////////////////////////////////////////////////////////////////////
-//
+// Card Functions ////////////////////////////////////////////////////////////////////////////////////////////
 document.querySelector(".flipCount").textContent = flipCount;
 
 fetch("./data/cards-easy.json")
@@ -65,10 +54,12 @@ fetch("./data/cards-easy.json")
     generateCards();
   });
 
+// for random card generation
 function shuffleCards() {
   let currentIndex = cards.length,
     randomIndex,
     temporaryValue;
+
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -78,6 +69,7 @@ function shuffleCards() {
   }
 }
 
+// generates cards on screen
 function generateCards() {
   for (let card of cards) {
     const cardElement = document.createElement("div");
@@ -85,7 +77,7 @@ function generateCards() {
     cardElement.setAttribute("data-name", card.name);
     cardElement.innerHTML = `
       <div class="front">
-        <img class="front-image" src=${card.image}>
+      <img class="front-image" src=${card.image}>
       </div>
       <div class="back"></div>
     `;
@@ -96,6 +88,7 @@ function generateCards() {
   completedCheck(cards.length);
 }
 
+// function to flip cards when clicked
 function flipCard() {
   if (lockBoard) return;
   if (this === firstCard) return;
@@ -115,6 +108,7 @@ function flipCard() {
   checkForMatch();
 }
 
+// checks if two flipped cards match
 function checkForMatch() {
   let isMatch = firstCard.dataset.name === secondCard.dataset.name;
 
@@ -135,6 +129,7 @@ function checkForMatch() {
   completedCheck(cards.length);
 }
 
+// disables cards if they match (keeps them flipped face up)
 function disableCards() {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
@@ -142,6 +137,7 @@ function disableCards() {
   resetBoard();
 }
 
+// flips cards face down if they don't match
 function unflipCards() {
   setTimeout(() => {
     firstCard.classList.remove("flipped");
@@ -150,16 +146,14 @@ function unflipCards() {
   }, 1000);
 }
 
+// Reset Board Function ///////////////////////////////////////////////////////////////////////////////////
 function resetBoard() {
   firstCard = null;
   secondCard = null;
   lockBoard = false;
 }
 
-//
 // Start Menu functions ///////////////////////////////////////////////////////////////////////////////////
-//
-
 function restart() {
   counting = true;
   console.log("restart", timerSeconds);
@@ -180,14 +174,12 @@ function restart() {
   restart_sound.volume = 0.3;
 }
 
-////toggle between rank and the nice gif----------------------------------------------//
+//Score board toggle //////////////////////////////////////////////////////////////////////////////////////
 const rightBarDis = document.getElementById("right-bar-display");
 const rightBarDis2 = document.getElementById("right-bar-display-2");
 
 const rightBarDis_t = window.getComputedStyle(rightBarDis);
 const rightBarDis2_t = window.getComputedStyle(rightBarDis2);
-
-
 
 function rank(){
   if (rightBarDis_t.display === "none"){
@@ -207,19 +199,7 @@ function rank(){
 
 rightBarDis2.style.display = "none";
 
-// function saveData(){
-//   localStorage.setItem("data", finalScore);
-// }
-
-// function showSaved(){
-//   listContainer.innerHTML = localStorage.getItem("data");
-// }
-
-// showSaved();
-
-
-//////////////////
-
+// Logic and functions for winning the game////////////////////////////////////////////////////////////////
 const winImage = document.getElementById("win-window");
 const displayScore = document.getElementById("score-display");
 const scoreContainer = document.getElementById("right-bar-display-2");
@@ -227,6 +207,7 @@ const scoreContainer = document.getElementById("right-bar-display-2");
 let scoreList = [];
 let timedList = [];
 
+// checks for win conditions
 function completedCheck(length) {
   // this is changed for testing original : score === length / 2
   if (score === length / 2) {
@@ -255,20 +236,19 @@ function completedCheck(length) {
   }
 }
 
-
+// Score board disply//////////////////////////////////////////////////////////////////////////////////////
 function display_score_rank(finalScore,timerSeconds){
     scoreList.push(finalScore);
     timedList.push(timerSeconds);
     scoreContainer.innerHTML = "";
+
     scoreList.sort(function(a, b) {
       return b - a;
     });
 
     for (i=0; i<scoreList.length; i++){
-      // for (x=0; x<timedList.length; x++){
-        const newScore = document.createElement("li");
-        newScore.innerHTML = ` ` + scoreList[i] + ` Points!` + "<br />" +formatTime(timedList[i]);
-        scoreContainer.appendChild(newScore);
-      // }  
-  }
+      const newScore = document.createElement("li");
+      newScore.innerHTML = ` ` + scoreList[i] + ` Points!` + "<br />" +formatTime(timedList[i]);
+      scoreContainer.appendChild(newScore); 
+    }
 }
