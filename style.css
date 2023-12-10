@@ -126,26 +126,28 @@ h2{
     linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0))
     ;
   background-color: #e81000;
-  &:after{
-    content:"";
-    display:block;
-    position:absolute;
-    top:0;
-    right:0;
-    left:0;
-    bottom:0;
-    border:1px solid rgba(33,0,0,0.2);
-    border-radius: 2px;
-  }
-  &:before{
-    content:"×";
-    position:absolute;
-    left:1px;
-    top:-9px;
-    color: white;
-    text-shadow:none;
-    font-size:23px;
-  }
+}
+
+close:after{
+  content:"";
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  border:1px solid rgba(33,0,0,0.2);
+  border-radius: 2px;
+} 
+  
+.close:before{
+  content:"×";
+  position:absolute;
+  left:1px;
+  top:-9px;
+  color: white;
+  text-shadow:none;
+  font-size:23px;
 }
 
 
